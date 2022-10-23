@@ -23,3 +23,14 @@ interface ICategoryAttribute{
     Title: string;
     Slug: string;
 }
+
+export interface IArtical{
+    id: number;
+    attributes: IArticalAttibute
+}
+
+interface IArticalAttibute{
+    Title: string;
+    Body: string;
+    Slug: string;
+}

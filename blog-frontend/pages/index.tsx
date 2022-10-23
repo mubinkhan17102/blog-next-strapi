@@ -1,17 +1,21 @@
 import { AxiosResponse } from 'axios'
 import type { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
+import Articals from '../components/Articals'
 import Tab from '../components/Tab'
-import {fetchCatagories} from '../http/index'
-import { ICategory, ICollectionResponse } from '../types'
+import {fetchArticales, fetchCatagories} from '../http/index'
+import { IArtical, ICategory, ICollectionResponse } from '../types'
 
 interface IPropTypes{
   categories: {
     items: ICategory[]
   }
+  articales: {
+    items: IArtical[]
+  }
 }
 
-const Home: NextPage<IPropTypes> = ({categories}) => {
+const Home: NextPage<IPropTypes> = ({categories, articales}) => {
   
   return (
     <div>
@@ -23,11 +27,7 @@ const Home: NextPage<IPropTypes> = ({categories}) => {
 
       < Tab categories = {categories} name='mubin'/>
 
-      <main >
-        <h1 className=' text-3xl font-bold'>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-      </main>
+      <Articals articales= {articales}/>
     </div>
   )  
 }
@@ -36,10 +36,15 @@ export const getServerSideProps: GetServerSideProps = async ()=>{
   //Fetching catagories
   const {data}:AxiosResponse<ICollectionResponse<ICategory[]>> = await fetchCatagories()
 
+  const {data: articales} :AxiosResponse<ICollectionResponse<IArtical[]>> = await fetchArticales();
+
   return {
     props: {
       categories: {
-        items: data.data
+        items: data.data,
+      },
+      articales:{
+        items: articales.data
       }
     }
   }

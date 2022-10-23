@@ -12,3 +12,5 @@ export default api;
 //Catagories
 
 export const fetchCatagories = async ()=> api.get('/api/categories');
+
+export const fetchArticales = async ()=> api.get('/api/articals');

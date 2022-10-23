@@ -4,7 +4,7 @@ import logo from '../public/logo.png';
 
 const Navbar = ()=>{
     return(
-        <nav className=" flex justify-between py-7">
+        <nav className=" flex justify-between items-center py-7">
             <Link href="/">
                 <div className=" cursor-pointer flex items-center content-center">
                     <Image src={logo} width={30} height={30}/>
